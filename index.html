@@ -4,14 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <h1 id="question">Question Placeholder</h1>
-    <ol>
-        <li id="answer1">Answer 1</li>
-        <li id="answer2">Answer 2</li>
-        <li id="answer3">Answer 3</li>
-        <li id="answer4">Answer 4</li>
-    </ol>
+    <div class="container">
+        <div id="start-page">
+            <h1>Quiz Challenge</h1>
+            <p>This is a quiz! Answer all of the questions within the timeframe.</p>
+        </div>
+        <div id="question-container" class="hide">
+            <span id="question">Question</span>
+            <ol type="a" id="answer-buttons" class="btn-grid">
+               <li>
+                <button id="answer1" class="btn">Answer 1</button>
+               </li>
+               <li>
+                <button id="answer2" class="btn">Answer 2</button>
+               </li>
+               <li>
+                <button id="answer3" class="btn">Answer 3</button>
+               </li>
+               <li>
+                <button id="answer4" class="btn">Answer 4</button>
+               </li>
+            </ol>
+        </div>
+        <!-- <div class="controls">
+            <button id="start-btn" class="start-btn btn">Start</button>
+            <button id="next-btn" class="next-btn btn hide">Next</button>
+        </div> -->
+
+    </div>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>

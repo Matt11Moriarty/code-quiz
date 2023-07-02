@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+:root {
+
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Starting page  */
+
+
+/* Q and A page  */
+
+#answer-buttons {
+    display: inline;
+}
+
+.answer-buttons li {
+    background-color: blueviolet;
+}
+
+.answer-buttons #btn {
+    flex: 1 0 100%;
+}
