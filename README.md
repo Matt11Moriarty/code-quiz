@@ -7,3 +7,6 @@ resources
 
 - how to hide an element on click with js
   - https://stackoverflow.com/questions/5515527/javascript-onclick-hide-div
+
+- using datasets
+  - https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
