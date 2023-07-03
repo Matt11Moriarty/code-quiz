@@ -18,10 +18,14 @@ body {
 }
 
 /* Starting page  */
-
+#start-page {
+    display: block;
+}
 
 /* Q and A page  */
-
+#question-container {
+    display: none;
+}
 #answer-buttons {
     display: inline;
 }
