@@ -10,6 +10,7 @@ var answer2     = document.querySelector('#answer2');
 var answer3     = document.querySelector('#answer3');
 var answer4     = document.querySelector('#answer4');
 
+var questionCount = 0;
 //list of questions
 var question1 = {
     qText: 'What is 1 + 1?',
@@ -25,7 +26,7 @@ var question2 = {
     a3: '2 or more',
     a4: 'I\'m more of a dog person'
 }
-var questionCount = 0;
+
 //Click the start button to hide the start page
 startButton.addEventListener('click', startQuiz)
 
@@ -34,9 +35,33 @@ function startQuiz () {
     qAndApage.style.display = 'block';
     console.log("start game");
     questionCount = 1;
+    console.log(questionCount);
+    setQuestion(questionCount);
+    // return questionCount;
 }    
 
+function nextQuestion () {
+    
+}
 
+function setQuestion (questionCount) {
+    if (questionCount === 1) {
+        questionVal.textContent = question1.qText;
+        answer1.textContent = question1.a1;
+        answer2.textContent = question1.a2;
+        answer3.textContent = question1.a3;
+        answer4.textContent = question1.a4;
+        questionCount = 2;
+    }
+    else if (questionCount === 2) {
+        questionVal.textContent = question2.qText;
+        answer1.textContent = question2.a1;
+        answer2.textContent = question2.a2;
+        answer3.textContent = question2.a3;
+        answer4.textContent = question2.a4;
+    }
+
+}
 
 function selectAnswer () {
 
