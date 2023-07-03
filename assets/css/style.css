@@ -17,6 +17,13 @@ body {
     align-items: center;
 }
 
+#timer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+}
+
 /* Starting page  */
 #start-page {
     display: block;

@@ -10,7 +10,14 @@ var answer2     = document.querySelector('#answer2');
 var answer3     = document.querySelector('#answer3');
 var answer4     = document.querySelector('#answer4');
 
+//timer
+var timerText   = document.querySelector('#timer')
+
+//iterations
 var questionCount = 0;
+var incorrectAnswers = 0;
+var timeLeft = 75;
+
 //list of questions
 var question1 = {
     qText: 'What is 1 + 1?',
@@ -43,20 +50,53 @@ function startQuiz () {
     qAndApage.style.display = 'block';
     console.log("start game");
     questionCount = 1;
+    countDown(timeLeft);
     console.log(questionCount);
     setQuestion(questionCount);
     // return questionCount;
-}    
+}  
+
+//timer functoin
+function countDown (timeLeft) {
+    
+    timerText.textContent = `Time Remaining: ${timeLeft}`;
+    var timeInterval = setInterval(function () {
+        console.log(timeLeft);
+        if (timeLeft >= 0) {
+            timeLeft --;
+            timerText.textContent = `Time Remaining: ${timeLeft}`;
+        }
+        else {
+            console.log(timeLeft);
+            clearInterval(timeInterval);
+            endQuiz();
+        }
+    },1000)
+}
+
+function endQuiz () {
+
+}
 
 function pickAnswer (event) {
     var selectedAnswer = event.target;
-    var isCorrect = selectedAnswer.dataset.correct === 'true';
+    var isCorrect;
+    if (selectedAnswer.dataset.correct === 'true') {
+        isCorrect = true;
+    }
+    else {
+        isCorrect = false;
+    }
 
     if (isCorrect) {
         console.log('correct');
     }
+    //working on this now 
     else {
         console.log('wrong!');
+        incorrectAnswers ++;
+        timeLeft = timeLeft - 15;
+        countDown(timeLeft);
     }
 
     questionCount ++;
@@ -94,5 +134,4 @@ function setQuestion (questionCount) {
         questionCount ++;
         return setQuestion;
     }
-
 }
