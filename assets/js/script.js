@@ -10,6 +10,9 @@ var answer2 = document.querySelector('#answer2');
 var answer3 = document.querySelector('#answer3');
 var answer4 = document.querySelector('#answer4');
 
+//end screen
+var endScreen = document.querySelector('#end-screen');
+
 //timer
 var timerText = document.querySelector('#timer')
 
@@ -101,7 +104,7 @@ function startQuiz() {
     console.log("start game");
     //questionCount = 1;
     countDown();
-    console.log(questionCount);
+    // console.log(questionCount);
     setQuestion();
     // return questionCount;
 }
@@ -111,7 +114,7 @@ function countDown() {
 
     timerText.textContent = `Time Remaining: ${timeLeft}`;
     timeInterval = setInterval(function () {
-        console.log(timeLeft);
+        // console.log(timeLeft);
         if (timeLeft > 0) {
             timeLeft--;
             timerText.textContent = `Time Remaining: ${timeLeft}`;
@@ -127,6 +130,8 @@ function endQuiz() {
     timerText.textContent = 'Time Remaining: 0';
     clearInterval(timeInterval);
     qAndApage.style.display = 'none';
+    endScreen.style.display = 'block';
+    console.log(incorrectAnswers);
 }
 
 function pickAnswer(event) {

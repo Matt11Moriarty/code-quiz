@@ -45,3 +45,8 @@ body {
 .answer-buttons #btn {
     flex: 1 0 100%;
 }
+
+/* end screen  */
+#end-screen {
+    display: none;
+}
