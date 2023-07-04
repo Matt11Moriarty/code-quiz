@@ -78,8 +78,8 @@ var questions = [
         a4: ['array[0]', true]
     },     {
         qText: 'Which of these function declarations are recieving an input?',
-        a1: ['function(input) {}', false],
-        a2: ['function.input {}', true],
+        a1: ['function(input) {}', true],
+        a2: ['function.input {}', false],
         a3: ['function () {input}', false],
         a4: ['None of the above', false]
     }]
@@ -112,7 +112,7 @@ function countDown() {
     timerText.textContent = `Time Remaining: ${timeLeft}`;
     timeInterval = setInterval(function () {
         console.log(timeLeft);
-        if (timeLeft >= 0) {
+        if (timeLeft > 0) {
             timeLeft--;
             timerText.textContent = `Time Remaining: ${timeLeft}`;
         }
@@ -124,6 +124,7 @@ function countDown() {
 }
 
 function endQuiz() {
+    timerText.textContent = 'Time Remaining: 0';
     clearInterval(timeInterval);
     qAndApage.style.display = 'none';
 }
@@ -149,20 +150,21 @@ function pickAnswer(event) {
         setTimeout(() => {
             timerText.style.backgroundColor = 'white';
         }, 500)
-        timeLeft = timeLeft - 15;
+        if (timeLeft > 15) {
+            timeLeft = timeLeft - 15;
+        }
+        else {
+            timeLeft = 0;
+        }
     }
 
     // questionCount++;
     return setQuestion();
 }
 
+//for each question, builds an array of the answers 
 function setQuestion() {
-    // answer1.dataset.correct = 'false';
-    // answer2.dataset.correct = 'false';
-    // answer3.dataset.correct = 'false';
-    // answer4.dataset.correct = 'false';
-
-    if (questionCount >= questions.length) {
+ if (questionCount >= questions.length) {
         endQuiz();
         return;
     }
@@ -170,9 +172,8 @@ function setQuestion() {
     var answerElements = [answer1, answer2, answer3, answer4];
 
     var currentQuestion = questions[questionCount];
-    //if (questionCount === 1) {
     questionVal.textContent = currentQuestion.qText;
-
+    //for the current question, loops through the array of answers and sets the text content
     for (let i = 0; i < answerElements.length; i++) {
         const el = answerElements[i];
         var currentAnswer = currentQuestion[`a${i + 1}`];
@@ -182,22 +183,6 @@ function setQuestion() {
         el.dataset.correct = correct;
 
     }
-
-
     questionCount++;
     return setQuestion;
-    // }
-    // else if (questionCount === 2) {
-    //     questionVal.textContent = question2.qText;
-    //     answer1.textContent = question2.a1[0];
-    //     answer2.textContent = question2.a2[0];
-    //     //answer 3 is correct so set the data to true via object
-    //     answer3.textContent = question2.a3[0];
-    //     answer3.dataset.correct = question2.a3[1];
-
-    //     answer4.textContent = question2.a4[0];
-
-    //     questionCount++;
-    //     return setQuestion;
-    // }
 }
