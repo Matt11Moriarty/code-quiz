@@ -10,3 +10,6 @@ resources
 
 - using datasets
   - https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
+
+- settimeout
+  - https://developer.mozilla.org/en-US/docs/Web/API/setTimeout
