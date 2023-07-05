@@ -38,10 +38,19 @@ body {
     display: inline;
 }
 
-.answer-buttons li {
+
+
+/* #answer-buttons li {
     background-color: blueviolet;
+} */
+
+.btn {
+    flex: 1 0 100%;
+    box-shadow: 0 0 10px none;
+    margin: 0.2em;
 }
 
-.answer-buttons #btn {
-    flex: 1 0 100%;
+/* end screen  */
+#end-screen {
+    display: none;
 }

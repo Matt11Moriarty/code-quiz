@@ -10,6 +10,11 @@ var answer2 = document.querySelector('#answer2');
 var answer3 = document.querySelector('#answer3');
 var answer4 = document.querySelector('#answer4');
 
+//end screen
+var endScreen = document.querySelector('#end-screen');
+var scoreText = document.querySelector('#score-message');
+var submitButton = document.querySelector('#submit');
+
 //timer
 var timerText = document.querySelector('#timer')
 
@@ -93,6 +98,8 @@ answer1.addEventListener('click', pickAnswer);
 answer2.addEventListener('click', pickAnswer);
 answer3.addEventListener('click', pickAnswer);
 answer4.addEventListener('click', pickAnswer);
+//submit high score
+submitButton.addEventListener('click', saveScore);
 
 
 function startQuiz() {
@@ -101,7 +108,7 @@ function startQuiz() {
     console.log("start game");
     //questionCount = 1;
     countDown();
-    console.log(questionCount);
+    // console.log(questionCount);
     setQuestion();
     // return questionCount;
 }
@@ -111,7 +118,7 @@ function countDown() {
 
     timerText.textContent = `Time Remaining: ${timeLeft}`;
     timeInterval = setInterval(function () {
-        console.log(timeLeft);
+        // console.log(timeLeft);
         if (timeLeft > 0) {
             timeLeft--;
             timerText.textContent = `Time Remaining: ${timeLeft}`;
@@ -127,6 +134,7 @@ function endQuiz() {
     timerText.textContent = 'Time Remaining: 0';
     clearInterval(timeInterval);
     qAndApage.style.display = 'none';
+    displayScore();
 }
 
 function pickAnswer(event) {
@@ -134,6 +142,10 @@ function pickAnswer(event) {
     var isCorrect;
     if (selectedAnswer.dataset.correct === 'true') {
         isCorrect = true;
+        selectedAnswer.style.boxShadow = '0 0 10px green'
+        setTimeout(function () {
+            selectedAnswer.style.boxShadow = ''
+        },499)
     }
     else {
         isCorrect = false;
@@ -144,6 +156,10 @@ function pickAnswer(event) {
     }
 
     else {
+        selectedAnswer.style.boxShadow = '0 0 10px red'
+        setTimeout(function () {
+            selectedAnswer.style.boxShadow = ''
+        },499)
         console.log('wrong!');
         incorrectAnswers++;
         timerText.style.backgroundColor = 'lightcoral';
@@ -159,7 +175,10 @@ function pickAnswer(event) {
     }
 
     // questionCount++;
-    return setQuestion();
+    setTimeout(function() {
+        return setQuestion();
+    }, 500)
+    
 }
 
 //for each question, builds an array of the answers 
@@ -186,3 +205,14 @@ function setQuestion() {
     questionCount++;
     return setQuestion;
 }
+
+function displayScore () {
+    endScreen.style.display = 'block';
+    scoreText.textContent = `Your final score is ${timeLeft}.`
+}
+
+function saveScore (event) {
+    event.preventDefault()
+}
+
+
