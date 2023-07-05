@@ -37,7 +37,7 @@ var questions = [
         a1: ['There is no difference', false],
         a2: ['They are two halves to the same whole', false],
         a3: ['Lot\'s of stuff', true],
-        a4: ['Java is even real', false]
+        a4: ['JavaScript uses semicolons', false]
 
     },     {
         qText: 'What does DOM stand for?',
@@ -46,7 +46,7 @@ var questions = [
         a3: ['Document Oriented Mode', false],
         a4: ['Document Object Model', true]
     },     {
-        qText: 'How do you end an setInterval method?',
+        qText: 'How do you end a setInterval method?',
         a1: ['endTimer', false],
         a2: ['clearInterval', true],
         a3: ['stopPlease', false],
@@ -71,7 +71,7 @@ var questions = [
         a4: ['<link>', false]
     },     {
         qText: 'In js, a method is:',
-        a1: ['a way to do something', false],
+        a1: ['the same as a variable', false],
         a2: ['Clifford Smith, Jr. (born March 2, 1971)', false],
         a3: ['an object property containing a function definition', true],
         a4: ['idk ask someone else', false]
