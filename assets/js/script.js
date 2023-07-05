@@ -208,7 +208,18 @@ function setQuestion() {
 
 function displayScore () {
     endScreen.style.display = 'block';
-    scoreText.textContent = `Your final score is ${timeLeft}.`
+    if (timeLeft < 5) {
+        scoreText.textContent = `Your final score is ${timeLeft}. That's horrible...`;
+    }
+    else if (timeLeft < 25) {
+        scoreText.textContent = `Your final score is ${timeLeft}. Not bad.`;
+    }
+    else if (timeLeft < 50) {
+        scoreText.textContent = `Your final score is ${timeLeft}. You're actually pretty good at this.`;
+    }
+    else {
+        scoreText.textContent = `Your final score is ${timeLeft}. Amazing! I'm proud of you :)`;
+    }
 }
 
 function saveScore (event) {
