@@ -12,6 +12,8 @@ var answer4 = document.querySelector('#answer4');
 
 //end screen
 var endScreen = document.querySelector('#end-screen');
+var scoreText = document.querySelector('#score-message');
+var submitButton = document.querySelector('#submit');
 
 //timer
 var timerText = document.querySelector('#timer')
@@ -96,6 +98,8 @@ answer1.addEventListener('click', pickAnswer);
 answer2.addEventListener('click', pickAnswer);
 answer3.addEventListener('click', pickAnswer);
 answer4.addEventListener('click', pickAnswer);
+//submit high score
+submitButton.addEventListener('click', saveScore);
 
 
 function startQuiz() {
@@ -130,8 +134,7 @@ function endQuiz() {
     timerText.textContent = 'Time Remaining: 0';
     clearInterval(timeInterval);
     qAndApage.style.display = 'none';
-    endScreen.style.display = 'block';
-    console.log(incorrectAnswers);
+    displayScore();
 }
 
 function pickAnswer(event) {
@@ -202,3 +205,14 @@ function setQuestion() {
     questionCount++;
     return setQuestion;
 }
+
+function displayScore () {
+    endScreen.style.display = 'block';
+    scoreText.textContent = `Your final score is ${timeLeft}.`
+}
+
+function saveScore (event) {
+    event.preventDefault()
+}
+
+
