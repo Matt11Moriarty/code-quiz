@@ -38,12 +38,16 @@ body {
     display: inline;
 }
 
-.answer-buttons li {
-    background-color: blueviolet;
-}
 
-.answer-buttons #btn {
+
+/* #answer-buttons li {
+    background-color: blueviolet;
+} */
+
+.btn {
     flex: 1 0 100%;
+    box-shadow: 0 0 10px none;
+    margin: 0.2em;
 }
 
 /* end screen  */

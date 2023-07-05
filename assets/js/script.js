@@ -139,6 +139,10 @@ function pickAnswer(event) {
     var isCorrect;
     if (selectedAnswer.dataset.correct === 'true') {
         isCorrect = true;
+        selectedAnswer.style.boxShadow = '0 0 10px green'
+        setTimeout(function () {
+            selectedAnswer.style.boxShadow = ''
+        },499)
     }
     else {
         isCorrect = false;
@@ -149,6 +153,10 @@ function pickAnswer(event) {
     }
 
     else {
+        selectedAnswer.style.boxShadow = '0 0 10px red'
+        setTimeout(function () {
+            selectedAnswer.style.boxShadow = ''
+        },499)
         console.log('wrong!');
         incorrectAnswers++;
         timerText.style.backgroundColor = 'lightcoral';
@@ -164,7 +172,10 @@ function pickAnswer(event) {
     }
 
     // questionCount++;
-    return setQuestion();
+    setTimeout(function() {
+        return setQuestion();
+    }, 500)
+    
 }
 
 //for each question, builds an array of the answers 
