@@ -39,11 +39,6 @@ body {
 }
 
 
-
-/* #answer-buttons li {
-    background-color: blueviolet;
-} */
-
 .btn {
     flex: 1 0 100%;
     box-shadow: 0 0 10px none;
@@ -53,4 +48,15 @@ body {
 /* end screen  */
 #end-screen {
     display: none;
+}
+
+#leader-board {
+    display: none;
+}
+
+#showScores {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 5px;
 }

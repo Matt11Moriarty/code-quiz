@@ -37,10 +37,13 @@
             <h1>All done!</h1>
             <a id="score-message">Score message</a>
             <form id="form">
-                <span>Enter initials: <input type="text" id="total" placeholder="Initials" maxlength = "2" onkeydown="return /[a-z]/i.test(event.key)"/><button id="submit">Submit</button></span>
+                <span>Enter initials: <input type="text" id="initials" placeholder="Initials" maxlength = "2" onkeydown="return /[a-z]/i.test(event.key)"/><button id="submit">Submit</button></span>
             </form>
         </div>
-
+        <ol id="leader-board">
+            <!-- dynamically display leaderboard here -->
+        </ol>
+        <button id="showScores">Show Leaderboard</button>
     </main>
     <script src="./assets/js/script.js"></script>
 </body>
