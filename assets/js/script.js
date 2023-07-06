@@ -15,10 +15,12 @@ var endScreen = document.querySelector('#end-screen');
 var scoreText = document.querySelector('#score-message');
 var submitButton = document.querySelector('#submit');
 var initials = document.querySelector('#initials');
+var form = document.querySelector('#form');
 
 //leaderboard
 var leaderboard = document.querySelector('#leader-board');
-var showScores = document.querySelector('showScores')
+var showScores = document.querySelector('#showScores')
+var retry = document.querySelector('#retry');
 
 //timer
 var timerText = document.querySelector('#timer')
@@ -111,7 +113,13 @@ submitButton.addEventListener('click', saveScore);
 //show scores
 showScores.addEventListener('click', showLeaderboard);
 
+//start quiz over
+retry.addEventListener('click', startQuiz);
+
 function startQuiz() {
+    form.reset();
+    leaderboard.style.display = 'none';
+    questionCount = 0;
     startingPage.style.display = 'none';
     qAndApage.style.display = 'block';
     console.log("start game");
@@ -231,7 +239,7 @@ function displayScore () {
     }
 }
 //working here
-var savedScores = JSON.stringify([1,2,3]);
+var savedScores = JSON.stringify([]);
 localStorage.setItem("savedScores", savedScores);
 
 function saveScore (event) {
@@ -255,6 +263,7 @@ function saveScore (event) {
     scoresArray.push(userScore);
 
     localStorage.setItem("savedScores", JSON.stringify(scoresArray));
+    showLeaderboard();
 
 }
 
@@ -262,4 +271,5 @@ function showLeaderboard () {
     var stringScores = localStorage.getItem("savedScores");
     var arrayScores = JSON.parse(stringScores);
     console.log(arrayScores);
+    leaderboard.children[0].textContent = `Name: ${arrayScores[0].user} Score: ${arrayScores[0].score}`;
 }

@@ -40,9 +40,13 @@
                 <span>Enter initials: <input type="text" id="initials" placeholder="Initials" maxlength = "2" onkeydown="return /[a-z]/i.test(event.key)"/><button id="submit">Submit</button></span>
             </form>
         </div>
-        <ol id="leader-board">
+        <div id="leader-board">
             <!-- dynamically display leaderboard here -->
-        </ol>
+            <ol>
+                <li id="first-place">First</li>
+            </ol>
+            <button id="retry">Start Over</button>
+        </div>
         <button id="showScores">Show Leaderboard</button>
     </main>
     <script src="./assets/js/script.js"></script>
