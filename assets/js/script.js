@@ -101,22 +101,27 @@ var questions = [
 
 
 //Event Listeners
+
 //Click the start button to hide the start page
 startButton.addEventListener('click', startQuiz);
-//answers
+//answer buttons
 answer1.addEventListener('click', pickAnswer);
 answer2.addEventListener('click', pickAnswer);
 answer3.addEventListener('click', pickAnswer);
 answer4.addEventListener('click', pickAnswer);
-//submit high score
+//submit score
 submitButton.addEventListener('click', saveScore);
-
 
 //start quiz over
 retry.addEventListener('click', startQuiz);
+
 //reset scores
 resetScores.addEventListener('click', clearScores);
 
+
+//Functions
+
+//starts the quiz
 function startQuiz() {
     timeLeft = 75;
     form.reset();
@@ -124,30 +129,25 @@ function startQuiz() {
     questionCount = 0;
     startingPage.style.display = 'none';
     qAndApage.style.display = 'block';
-    console.log("start game");
-    //questionCount = 1;
     countDown();
-    // console.log(questionCount);
     setQuestion();
-    // return questionCount;
 }
 
-//timer functoin
+//timer function
 function countDown() {
 
     timerText.textContent = `Time Remaining: ${timeLeft}`;
     timeInterval = setInterval(function () {
-        // console.log(timeLeft);
         if (timeLeft > 0) {
             timeLeft--;
             timerText.textContent = `Time Remaining: ${timeLeft}`;
         }
         else {
-            console.log(timeLeft);
             endQuiz();
         }
     }, 1000)
 }
+
 
 function endQuiz() {
     timerText.textContent = 'Time Remaining: 0';
@@ -156,6 +156,32 @@ function endQuiz() {
     displayScore();
 }
 
+//for each question, builds an array of the answers 
+function setQuestion() {
+    if (questionCount >= questions.length) {
+           endQuiz();
+           return;
+       }
+   
+       var answerElements = [answer1, answer2, answer3, answer4];
+   
+       var currentQuestion = questions[questionCount];
+       questionVal.textContent = currentQuestion.qText;
+       //for the current question, loops through the array of answers and sets the text content
+       for (let i = 0; i < answerElements.length; i++) {
+           const el = answerElements[i];
+           var currentAnswer = currentQuestion[`a${i + 1}`];
+   
+           var [content, correct] = currentAnswer;
+           el.textContent = content;
+           el.dataset.correct = correct;
+   
+       }
+       questionCount++;
+       return setQuestion;
+   }
+
+//listens for selected answer and does stuff depending on if its right or wrong
 function pickAnswer(event) {
     var selectedAnswer = event.target;
     var isCorrect;
@@ -170,18 +196,13 @@ function pickAnswer(event) {
         isCorrect = false;
     }
 
-    if (isCorrect) {
-        console.log('correct');
-    }
-
-    else {
+    if (!isCorrect) {
         selectedAnswer.style.boxShadow = '0 0 10px red'
         setTimeout(function () {
             selectedAnswer.style.boxShadow = ''
         },499)
-        console.log('wrong!');
         incorrectAnswers++;
-        timerText.style.backgroundColor = 'lightcoral';
+        timerText.style.backgroundColor = 'red';
         setTimeout(() => {
             timerText.style.backgroundColor = 'white';
         }, 500)
@@ -192,39 +213,14 @@ function pickAnswer(event) {
             timeLeft = 0;
         }
     }
-
-    // questionCount++;
     setTimeout(function() {
-        return setQuestion();
+        setQuestion();
     }, 500)
     
 }
 
-//for each question, builds an array of the answers 
-function setQuestion() {
- if (questionCount >= questions.length) {
-        endQuiz();
-        return;
-    }
 
-    var answerElements = [answer1, answer2, answer3, answer4];
-
-    var currentQuestion = questions[questionCount];
-    questionVal.textContent = currentQuestion.qText;
-    //for the current question, loops through the array of answers and sets the text content
-    for (let i = 0; i < answerElements.length; i++) {
-        const el = answerElements[i];
-        var currentAnswer = currentQuestion[`a${i + 1}`];
-
-        var [content, correct] = currentAnswer;
-        el.textContent = content;
-        el.dataset.correct = correct;
-
-    }
-    questionCount++;
-    return setQuestion;
-}
-
+//shows your score and a message based on proficiency 
 function displayScore () {
     endScreen.style.display = 'block';
     if (timeLeft < 5) {
@@ -240,15 +236,16 @@ function displayScore () {
         scoreText.textContent = `Your final score is ${timeLeft}. Amazing! I'm proud of you :)`;
     }
 }
-//working here
+
+//creates an empty array in local storage
 var savedScores = JSON.stringify([]);
 localStorage.setItem("savedScores", savedScores);
 
+//saves the user's initials and score to an object and stores that object in the local array
 function saveScore (event) {
     endScreen.style.display = 'none';
     leaderboard.style.display = 'block';
     event.preventDefault()
-
 
     var userScore = {
         user: initials.value,
@@ -269,15 +266,13 @@ function saveScore (event) {
 
 }
 
-
+//displays the leaderboard, sorted by high score! 
 function showLeaderboard () {
     leaderboardList.innerHTML = '';
     var stringScores = localStorage.getItem("savedScores");
     var arrayScores = JSON.parse(stringScores);
     arrayScores.sort((x,y) => y.score -x.score);
-    console.log(arrayScores);
-    // leaderboard.children[0].textContent = `Name: ${arrayScores[0].user} Score: ${arrayScores[0].score}`;
-
+    //dynamically creates list elements depending on the length of the array of user scores
     for(i=0; i< arrayScores.length; i++) {
         var currentUserScore = arrayScores[i];
         var li = document.createElement("li");
@@ -287,7 +282,7 @@ function showLeaderboard () {
     }
 }
 
-
+//clears the leaderboard and goes back to the start page
 function clearScores () {
     localStorage.setItem("savedScores", '');
     startingPage.style.display = 'block';
