@@ -19,8 +19,10 @@ var form = document.querySelector('#form');
 
 //leaderboard
 var leaderboard = document.querySelector('#leader-board');
-var showScores = document.querySelector('#showScores')
+var leaderboardList = document.querySelector('#leader-board-list');
+var showScores = document.querySelector('#showScores');
 var retry = document.querySelector('#retry');
+var resetScores = document.querySelector('#reset-scores');
 
 //timer
 var timerText = document.querySelector('#timer')
@@ -110,13 +112,14 @@ answer4.addEventListener('click', pickAnswer);
 //submit high score
 submitButton.addEventListener('click', saveScore);
 
-//show scores
-showScores.addEventListener('click', showLeaderboard);
 
 //start quiz over
 retry.addEventListener('click', startQuiz);
+//reset scores
+resetScores.addEventListener('click', clearScores);
 
 function startQuiz() {
+    timeLeft = 75;
     form.reset();
     leaderboard.style.display = 'none';
     questionCount = 0;
@@ -267,9 +270,27 @@ function saveScore (event) {
 
 }
 
+
 function showLeaderboard () {
+    leaderboardList.innerHTML = '';
     var stringScores = localStorage.getItem("savedScores");
     var arrayScores = JSON.parse(stringScores);
+    arrayScores.sort((x,y) => y.score -x.score);
     console.log(arrayScores);
-    leaderboard.children[0].textContent = `Name: ${arrayScores[0].user} Score: ${arrayScores[0].score}`;
+    // leaderboard.children[0].textContent = `Name: ${arrayScores[0].user} Score: ${arrayScores[0].score}`;
+
+    for(i=0; i< arrayScores.length; i++) {
+        var currentUserScore = arrayScores[i];
+        var li = document.createElement("li");
+        
+        leaderboardList.appendChild(li);
+        li.textContent = `Name: ${currentUserScore.user} Score: ${currentUserScore.score}`;
+    }
+}
+
+
+function clearScores () {
+    localStorage.setItem("savedScores", '');
+    startingPage.style.display = 'block';
+    leaderboard.style.display = 'none';
 }
