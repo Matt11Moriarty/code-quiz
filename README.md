@@ -1,6 +1,6 @@
 # Code Quiz
 
-## Description
+### Description
 
 This quiz was created as a way to quiz myself and others on their javascript knowledge.
 If you can answer all of the questions within the timeframe, you are well on your way to becoming a javascript expert!
@@ -8,7 +8,7 @@ If you can answer all of the questions within the timeframe, you are well on you
 In constructing this quiz application, I learned a ton about javascript. 
 I now feel exremely confident with the DOM, as well as writing functions, saving data to local storage, and creating/accessing objects.
 
-## User Story
+### User Story
 ```
 AS A coding boot camp student
 I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
