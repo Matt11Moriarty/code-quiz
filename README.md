@@ -5,9 +5,7 @@
 This quiz was created as a way to quiz myself and others on their javascript knowledge.
 If you can answer all of the questions within the timeframe, you are well on your way to becoming a javascript expert!
 
-In constructing this quiz application, I learned sooo much about javascript. When I started this project, I was not confident in navigating the DOM and had low confidence in my ability to build this application.
-However, with consistent effort, reviewing the lecture material, and a lot of googling (plus a little tutor help) I was able to acheive the challenge requirements, and more!
-
+In constructing this quiz application, I learned a ton about javascript. 
 I now feel exremely confident with the DOM, as well as writing functions, saving data to local storage, and creating/accessing objects.
 
 ## Table of Contents (Optional)
